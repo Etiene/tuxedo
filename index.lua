@@ -1,0 +1,2 @@
+require "sailor"
+sailor.launch()
