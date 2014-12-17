@@ -3,7 +3,8 @@ drop table if exists user;
 create table user(
 	id int primary key auto_increment, 
 	username varchar(20), 
-	password varchar(20)
+	password varchar(20),
+	email varchar(255)
 );
 
 drop table if exists post;
