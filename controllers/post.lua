@@ -1,8 +1,13 @@
 local M = {}
 
+local function format_date(date)
+	local _, _, y, m, d, h = string.find(date, "(%d+)-(%d+)-(%d+) (.+):%d+")
+	return d.."/"..m.."/"..y.." "..h
+end
+
 function M.index(page)
 	local posts = sailor.model("post"):find_all()
-	page:render('index',{posts = posts})
+	page:render('index',{posts = posts,format_date=format_date})
 end
 
 function M.create(page)

@@ -1,3 +1,4 @@
+
 <style>
 	.table td {
 	    cursor: pointer;
@@ -7,20 +8,20 @@
 <table class="table"> 
 	<tr> 
 		<th>id</th> 
-		<th>author_id</th> 
-		<th>creation_date</th> 
+		<th>author</th> 
+		<th>creation date</th> 
 		<th>body</th> 
-		<th>last_modified</th> 
+		<th>last modified</th> 
 		<th>published</th> 
 	</tr>
 	<?lua for k,v in pairs(posts) do ?>
 		<tr onclick="location.href='?r=post/view&id=<?lua page:print( v.id ) ?>'" > 
 			<td> <?lua page:print( v.id ) ?> </td> 
-			<td> <?lua page:print( v.author_id ) ?> </td> 
-			<td> <?lua page:print( v.creation_date ) ?> </td> 
+			<td> <?lua page:print( v.author.username ) ?> </td> 
+			<td> <?lua page:print( format_date(v.creation_date )) ?> </td> 
 			<td> <?lua page:print( v.body ) ?> </td> 
-			<td> <?lua page:print( v.last_modified ) ?> </td> 
-			<td> <?lua page:print( v.published ) ?> </td> 
+			<td> <?lua page:print( format_date(v.last_modified )) ?> </td> 
+			<td> <?lua if v.published then page:print( 'Yes' ) else page:print( 'No' ) end ?> </td> 
 		</tr>
 	<?lua end ?> 
 </table> 
