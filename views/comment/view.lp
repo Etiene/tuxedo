@@ -1,0 +1,13 @@
+<h2>
+	View comment #<?lua page:print( comment.id ) ?> 
+	<small>(<a href="?r=comment/update&id=<?lua page:print( comment.id ) ?>" >update</a>)</small> 
+	<small>(<a href="?r=comment/delete&id=<?lua page:print( comment.id ) ?>" >delete</a>)</small>
+</h2>
+<table class="table"> 
+	<tr><td>id</td><td><?lua page:print( comment.id ) ?> </td></tr> 
+	<tr><td>body</td><td><?lua page:print( comment.body ) ?> </td></tr> 
+	<tr><td>author_id</td><td><?lua page:print( comment.author_id ) ?> </td></tr> 
+	<tr><td>post_id</td><td><?lua page:print( comment.post_id ) ?> </td></tr> 
+</table> 
+<br/>
+<a href="?r=comment/index"><- Back to View All</a>

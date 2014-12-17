@@ -1,0 +1,22 @@
+<?lua local form = require "sailor.form" ?>
+<h2>Update category</h2>
+<?lua if saved == false then ?>
+	There was an error while saving.
+<?lua end ?>
+<form method="post"> 
+<div class="form-group">
+		<label>id:</label>
+		<?lua page:print( form.text(category,'id', 'class="form-control" placeholder="id"') ) ?>
+	</div>
+<div class="form-group">
+		<label>name:</label>
+		<?lua page:print( form.text(category,'name', 'class="form-control" placeholder="name"') ) ?>
+	</div>
+<div class="form-group">
+		<label>description:</label>
+		<?lua page:print( form.text(category,'description', 'class="form-control" placeholder="description"') ) ?>
+	</div>
+	<input type="submit" class="btn btn-primary"/>
+</form>
+<br/>
+<a href="?r=category/index"><- Back to View All</a> 
