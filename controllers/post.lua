@@ -10,6 +10,13 @@ function M.create(page)
 	local saved
 	if next(page.POST) then
 		post:get_post(page.POST)
+		if post.published == 'on' then
+			post.published = true
+		else
+			post.published = false
+		end
+		post.creation_date = os.date("%Y-%m-%d %X")
+		post.last_modified = os.date("%Y-%m-%d %X")
 		saved = post:save()
 		if saved then
 			page:redirect('post/index')

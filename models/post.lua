@@ -8,7 +8,7 @@ post.attributes = {
 	--<attribute> = { <valfunc> = {<args>}, <valfunc> = {<args>}...}
 	{id = "safe"},
 	{author_id = v:new().number().max(1000) },
-	{creation_date = v:new().date()},
+	{creation_date = v:new().not_empty()}, -- change to datetime as soon as datetime is added to valua
 	{body = "safe"},
 	{last_modified = "safe"},
 	{published = v:new().boolean()},

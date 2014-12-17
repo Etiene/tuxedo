@@ -14,7 +14,7 @@ create table post(
 	author_id int references user (id) ON DELETE SET NULL,
 	creation_date datetime,
 	last_modified datetime,
-	published tinyint
+	published boolean
 );
 
 drop table if exists comment;
