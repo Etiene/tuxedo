@@ -38,9 +38,15 @@ function M.update(page)
 	local saved
 	if next(page.POST) then
 		post:get_post(page.POST)
+		if post.published == 'on' then
+			post.published = true
+		else
+			post.published = false
+		end
+		post.last_modified = os.date("%Y-%m-%d %X")
 		saved = post:update()
 		if saved then
-			page:redirect('post/index')
+			page:redirect('post/view',{id = post.id})
 		end
 	end
 	page:render('update',{post = post, saved = saved})
@@ -51,6 +57,8 @@ function M.view(page)
 	if not post then
 		return 404
 	end
+	post.creation_date = format_date(post.creation_date)
+	post.last_modified = format_date(post.last_modified)
 	page:render('view',{post = post})
 end
 
