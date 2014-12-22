@@ -6,7 +6,6 @@
 <table class="table"> 
 	<tr><td>id</td><td><?lua page:print( user.id ) ?> </td></tr> 
 	<tr><td>username</td><td><?lua page:print( user.username ) ?> </td></tr> 
-	<tr><td>password</td><td><?lua page:print( user.password ) ?> </td></tr> 
 	<tr><td>email</td><td><?lua page:print( user.email ) ?> </td></tr> 
 </table> 
 <br/>

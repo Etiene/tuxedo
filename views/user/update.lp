@@ -2,19 +2,16 @@
 <h2>Update user</h2>
 <?lua if saved == false then ?>
 	There was an error while saving.
-<?lua end ?>
+<?lua 	page:inspect(user.errors)
+	  end ?>
 <form method="post"> 
-	<div class="form-group">
-		<label>id:</label>
-		<?lua page:print( form.text(user,'id', 'class="form-control" placeholder="id"') ) ?>
-	</div>
 	<div class="form-group">
 		<label>username:</label>
 		<?lua page:print( form.text(user,'username', 'class="form-control" placeholder="username"') ) ?>
 	</div>
 	<div class="form-group">
 		<label>password:</label>
-		<?lua page:print( form.text(user,'password', 'class="form-control" placeholder="password"') ) ?>
+		<?lua page:print( form.password(user,'password', 'class="form-control" placeholder="password"') ) ?>
 	</div>
 	<div class="form-group">
 		<label>email:</label>

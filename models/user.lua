@@ -5,7 +5,7 @@ user.attributes = {
 	--<attribute> = { <valfunc> = {<args>}, <valfunc> = {<args>}...}
 	{id = "safe"},
 	{username = val:new().not_empty() },
-	{password = val:new().not_empty().len(6,10) },
+	{password = val:new().not_empty().len(6,32) },
 	{email = val:new().not_empty().email() }
 }
 

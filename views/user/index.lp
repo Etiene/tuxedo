@@ -8,14 +8,12 @@
 	<tr> 
 		<th>id</th> 
 		<th>username</th> 
-		<th>password</th> 
 		<th>email</th> 
 	</tr>
 	<?lua for k,v in pairs(users) do ?>
 		<tr onclick="location.href='?r=user/view&id=<?lua page:print( v.id ) ?>'" > 
 			<td> <?lua page:print( v.id ) ?> </td> 
 			<td> <?lua page:print( v.username ) ?> </td> 
-			<td> <?lua page:print( v.password ) ?> </td> 
 			<td> <?lua page:print( v.email ) ?> </td> 
 		</tr>
 	<?lua end ?> 
