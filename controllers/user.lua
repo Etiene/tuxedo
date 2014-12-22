@@ -1,5 +1,6 @@
 local M = {}
-local md5 = require "md5"
+local session = require "sailor.session"
+local access = require "sailor.access"
 
 function M.index(page)
 	local users = sailor.model("user"):find_all()
@@ -13,7 +14,7 @@ function M.create(page)
 		page:inspect(page.POST)
 		user:get_post(page.POST)
 		if user:validate() then 
-			user.password = md5.sumhexa(user.password)
+			user.password = access.hash(user.username,user.password)
 
 			saved = user:save()
 			if saved then
@@ -39,7 +40,7 @@ function M.update(page)
 		if not user.password or user.password == '' then 
 			user.password = pass 
 		else
-			user.password = md5.sumhexa(user.password)
+			user.password = access.hash(user.username,user.password)
 		end
 
 		saved = user:update()
@@ -70,5 +71,24 @@ function M.delete(page)
 		page:redirect('user/index')
 	end
 end
+
+function M.login(page)
+	local user = sailor.model("user"):new()
+	if next(page.POST) then
+		user:get_post(page.POST)
+		local login, err = access.login(user.username,user.password)
+		page:inspect(login)
+
+		if not login then
+			user.errors.password = err
+		end
+	end
+	page:render('login',{user = user})
+end
+
+function M.logout(page)
+	access.logout()
+	page:redirect('user/login')
+end	
 
 return M
