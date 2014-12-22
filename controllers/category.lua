@@ -28,7 +28,7 @@ function M.update(page)
 		category:get_post(page.POST)
 		saved = category:update()
 		if saved then
-			page:redirect('category/index')
+			page:redirect('category/view',{id = category.id})
 		end
 	end
 	page:render('update',{category = category, saved = saved})

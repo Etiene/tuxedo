@@ -4,19 +4,14 @@
 	There was an error while saving.
 <?lua end ?>
 <form method="post"> 
-<div class="form-group">
-		<label>id:</label>
-		<?lua page:print( form.text(category,'id', 'class="form-control" placeholder="id"') ) ?>
-		<span class="help-block"> <?lua page:print( category.errors.id or '') ?> </span>
-	</div>
-<div class="form-group">
+	<div class="form-group">
 		<label>name:</label>
 		<?lua page:print( form.text(category,'name', 'class="form-control" placeholder="name"') ) ?>
 		<span class="help-block"> <?lua page:print( category.errors.name or '') ?> </span>
 	</div>
-<div class="form-group">
+	<div class="form-group">
 		<label>description:</label>
-		<?lua page:print( form.text(category,'description', 'class="form-control" placeholder="description"') ) ?>
+		<?lua page:print( form.textarea(category,'description', 'class="form-control" placeholder="description"') ) ?>
 		<span class="help-block"> <?lua page:print( category.errors.description or '') ?> </span>
 	</div>
 	<input type="submit" class="btn btn-primary"/>

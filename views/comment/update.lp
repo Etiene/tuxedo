@@ -4,21 +4,21 @@
 	There was an error while saving.
 <?lua end ?>
 <form method="post"> 
-<div class="form-group">
-		<label>id:</label>
-		<?lua page:print( form.text(comment,'id', 'class="form-control" placeholder="id"') ) ?>
-	</div>
-<div class="form-group">
+	<div class="form-group">
 		<label>body:</label>
-		<?lua page:print( form.text(comment,'body', 'class="form-control" placeholder="body"') ) ?>
+		<?lua page:print( form.textarea(comment,'body', 'class="form-control" placeholder="body"') ) ?>
 	</div>
-<div class="form-group">
-		<label>author_id:</label>
+	<div class="form-group">
+		<label>author id:</label>
 		<?lua page:print( form.text(comment,'author_id', 'class="form-control" placeholder="author_id"') ) ?>
 	</div>
-<div class="form-group">
-		<label>post_id:</label>
+	<div class="form-group">
+		<label>post id:</label>
 		<?lua page:print( form.text(comment,'post_id', 'class="form-control" placeholder="post_id"') ) ?>
+	</div>
+	<div class="form-group">
+		<label>approved:</label>
+		<?lua page:print( form.checkbox(comment,'approved', '', false, 'class="form-control" placeholder="approved"') ) ?>
 	</div>
 	<input type="submit" class="btn btn-primary"/>
 </form>

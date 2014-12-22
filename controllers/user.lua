@@ -28,7 +28,7 @@ function M.update(page)
 		user:get_post(page.POST)
 		saved = user:update()
 		if saved then
-			page:redirect('user/index')
+			page:redirect('user/view',{id = user.id})
 		end
 	end
 	page:render('update',{user = user, saved = saved})

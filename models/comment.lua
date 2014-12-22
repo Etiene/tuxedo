@@ -5,8 +5,10 @@ comment.attributes = {
 	--<attribute> = { <valfunc> = {<args>}, <valfunc> = {<args>}...}
 	{id = "safe"},
 	{body = "safe"},
+	{creation_date = "safe"},
 	{author_id = "safe"},
-	{post_id = "safe"}
+	{post_id = "safe"},
+	{approved = "safe"}
 
 }
 

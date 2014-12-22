@@ -20,7 +20,9 @@ create table post(
 drop table if exists comment;
 create table comment(
 	id int primary key auto_increment, 
-	body text, 
+	body text,
+	creation_date datetime,
+	approved boolean, 
 	author_id int references user (id) ON DELETE SET NULL,
 	post_id int references post (id) ON DELETE CASCADE
 );
