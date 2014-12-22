@@ -1,6 +1,6 @@
 local M = {}
-local session = require "sailor.session"
 local access = require "sailor.access"
+local md5 = require "md5"
 
 function M.index(page)
 	local users = sailor.model("user"):find_all()
@@ -9,13 +9,14 @@ end
 
 function M.create(page)
 	local user = sailor.model("user"):new()
+	
 	local saved
 	if next(page.POST) then
 		page:inspect(page.POST)
 		user:get_post(page.POST)
 		if user:validate() then 
-			user.password = access.hash(user.username,user.password)
-
+			user.salt = string.sub(md5.sumhexa(os.time()),-8)
+			user.password = access.hash(user.username,user.password,user.salt)
 			saved = user:save()
 			if saved then
 				page:redirect('user/index')
@@ -78,7 +79,7 @@ function M.login(page)
 		user:get_post(page.POST)
 		local login, err = access.login(user.username,user.password)
 		page:inspect(login)
-
+	--	page:inspect(access.hash(user.username,user.password))
 		if not login then
 			user.errors.password = err
 		end
