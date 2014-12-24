@@ -26,4 +26,4 @@
 	<?lua end ?> 
 </table> 
 <br/>
-<a href="?r=post/create" class="btn btn-primary">Create new post</a>
+<a href="<%= sailor.make_url('post/create')%>" class="btn btn-primary">Create new post</a>
