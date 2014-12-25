@@ -1,7 +1,7 @@
 <h2>
 	View comment #<?lua page:print( comment.id ) ?> 
-	<small>(<a href="?r=comment/update&id=<?lua page:print( comment.id ) ?>" >update</a>)</small> 
-	<small>(<a href="?r=comment/delete&id=<?lua page:print( comment.id ) ?>" >delete</a>)</small>
+	<small>(<a href="<%= sailor.make_url('comment/update',{id = comment.id})%>" >update</a>)</small> 
+	<small>(<a href="<%= sailor.make_url('comment/delete',{id = comment.id})%>" >delete</a>)</small>
 </h2>
 <table class="table"> 
 	<tr><td>id</td><td><?lua page:print( comment.id ) ?> </td></tr> 
@@ -12,4 +12,4 @@
 	<tr><td>approved</td><td><?lua if comment.approved then page:print( 'Yes' ) else page:print( 'No' ) end ?> </td></tr> 
 </table> 
 <br/>
-<a href="?r=comment/index"><- Back to View All</a>
+<a href="<%= sailor.make_url('comment/index')%>"><- Back to View All</a>

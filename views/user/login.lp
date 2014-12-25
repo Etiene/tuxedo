@@ -24,5 +24,5 @@ if access.is_guest() then
 <?lua else ?>
 	Hello, <%=access.data.username%>, you are logged in.
 	<br/>
-	<a href='?r=user/logout' class="btn btn-primary" >Logout</a>
+	<a href='<%= sailor.make_url('user/logout')%>' class="btn btn-primary" >Logout</a>
 <?lua end ?>

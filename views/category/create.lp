@@ -17,4 +17,4 @@
 	<input type="submit" class="btn btn-primary"/>
 </form> 
 <br/>
-<a href="?r=category/index"><- Back to View All</a>
+<a href="<%= sailor.make_url('category/index')%>"><- Back to View All</a>

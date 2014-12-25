@@ -20,4 +20,4 @@
 	<input type="submit" class="btn btn-primary"/>
 </form>
 <br/>
-<a href="?r=user/index"><- Back to View All</a> 
+<a href="<%= sailor.make_url('user/index')%>"><- Back to View All</a> 

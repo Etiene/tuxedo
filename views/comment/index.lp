@@ -14,7 +14,7 @@
 		<th>approved</th> 
 	</tr>
 	<?lua for k,v in pairs(comments) do ?>
-		<tr onclick="location.href='?r=comment/view&id=<?lua page:print( v.id ) ?>'" > 
+		<tr onclick="location.href='<%= sailor.make_url('comment/view',{id = v.id})%>'" > 
 			<td> <?lua page:print( v.id ) ?> </td> 
 			<td> <?lua page:print( v.body ) ?> </td> 
 			<td> <?lua page:print( format_date(v.creation_date) ) ?> </td> 
@@ -25,4 +25,4 @@
 	<?lua end ?> 
 </table> 
 <br/>
-<a href="?r=comment/create" class="btn btn-primary">Create new comment</a>
+<a href="<%= sailor.make_url('comment/create')%>" class="btn btn-primary">Create new comment</a>

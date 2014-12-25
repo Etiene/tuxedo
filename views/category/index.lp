@@ -11,7 +11,7 @@
 		<th>description</th> 
 	</tr>
 	<?lua for k,v in pairs(categorys) do ?>
-		<tr onclick="location.href='?r=category/view&id=<?lua page:print( v.id ) ?>'" > 
+		<tr onclick="location.href='<%= sailor.make_url('category/view',{id = v.id})%>'" > 
 			<td> <?lua page:print( v.id ) ?> </td> 
 			<td> <?lua page:print( v.name ) ?> </td> 
 			<td> <?lua page:print( v.description ) ?> </td> 
@@ -19,4 +19,4 @@
 	<?lua end ?> 
 </table> 
 <br/>
-<a href="?r=category/create" class="btn btn-primary">Create new category</a>
+<a href="<%= sailor.make_url('category/create')%>" class="btn btn-primary">Create new category</a>

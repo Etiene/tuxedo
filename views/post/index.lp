@@ -15,7 +15,7 @@
 		<th>published</th> 
 	</tr>
 	<?lua for k,v in pairs(posts) do ?>
-		<tr onclick="location.href='?r=post/view&id=<?lua page:print( v.id ) ?>'" > 
+		<tr onclick="location.href='<%= sailor.make_url('post/view',{id = v.id})%>'" > 
 			<td> <?lua page:print( v.id ) ?> </td> 
 			<td> <?lua page:print( v.author.username ) ?> </td> 
 			<td> <?lua page:print( format_date(v.creation_date )) ?> </td> 

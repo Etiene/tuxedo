@@ -23,4 +23,4 @@
 	<input type="submit" class="btn btn-primary"/>
 </form>
 <br/>
-<a href="?r=comment/index"><- Back to View All</a> 
+<a href="<%= sailor.make_url('comment/index')%>"><- Back to View All</a> 
