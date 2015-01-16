@@ -9,6 +9,7 @@ post.attributes = {
 	{id = "safe"},
 	{author_id = v:new().number() },
 	{creation_date = v:new().not_empty()}, -- change to datetime as soon as datetime is added to valua
+	{title = "safe"},
 	{body = "safe"},
 	{last_modified = "safe"},
 	{published = v:new().boolean()},

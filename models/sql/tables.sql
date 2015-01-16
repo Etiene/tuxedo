@@ -11,6 +11,7 @@ create table user(
 drop table if exists post;
 create table post(
 	id int primary key auto_increment, 
+	title varchar(200),
 	body text,
 	author_id int references user (id) ON DELETE SET NULL,
 	creation_date datetime,

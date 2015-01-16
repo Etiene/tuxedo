@@ -11,6 +11,11 @@
 		<span class="help-block"> <?lua page:print( post.errors.author_id or '') ?> </span>
 	</div>
 	<div class="form-group">
+		<label>title:</label>
+		<?lua page:print( form.text(post,'title', 'class="form-control" placeholder="title"') ) ?>
+		<span class="help-block"> <?lua page:print( post.errors.title or '') ?> </span>
+	</div>
+	<div class="form-group">
 		<label>post:</label>
 		<?lua page:print( form.textarea(post,'body', 'class="form-control" placeholder="body"') ) ?>
 		<span class="help-block"> <?lua page:print( post.errors.body or '') ?> </span>

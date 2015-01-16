@@ -6,8 +6,14 @@ local function format_date(date)
 end
 
 function M.index(page)
-	local posts = sailor.model("post"):find_all()
-	page:render('index',{posts = posts,format_date=format_date})
+	local posts = sailor.model("post"):find_all(" published=1 ORDER BY creation_date DESC")
+	local current_page = page.GET.page or 1
+	local posts_per_page = 3
+	local pages = math.ceil(#posts/posts_per_page)
+	local start = (current_page-1)*posts_per_page + 1
+	local stop = current_page*posts_per_page
+
+	page:render('index',{posts = posts,format_date=format_date, pages = pages, start = start, stop = stop})
 end
 
 function M.create(page)
