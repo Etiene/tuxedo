@@ -60,12 +60,27 @@ end
 
 function M.view(page)
 	local post = sailor.model("post"):find_by_id(page.GET.id)
-	if not post then
+	if not post or not post.published then
 		return 404
 	end
+
+	local new_comment = sailor.model("comment"):new()
+	if(next(page.POST)) then
+		new_comment:get_post(page.POST)
+		new_comment.creation_date = os.date("%Y-%m-%d %X")
+		new_comment.approved = true
+		new_comment.post_id = post.id
+		if new_comment:save() then
+			-- cleaning form
+			new_comment = sailor.model("comment"):new()
+		end
+	end
+
 	post.creation_date = format_date(post.creation_date)
 	post.last_modified = format_date(post.last_modified)
-	page:render('view',{post = post})
+	
+
+	page:render('view',{post = post,format_date=format_date,new_comment=new_comment})
 end
 
 function M.delete(page)

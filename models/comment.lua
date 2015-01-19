@@ -1,12 +1,13 @@
 local comment = {}
-
+local val = require "valua"
 -- Attributes and their validation rules
 comment.attributes = {
 	--<attribute> = { <valfunc> = {<args>}, <valfunc> = {<args>}...}
 	{id = "safe"},
-	{body = "safe"},
+	{body = val:new().not_empty()},
 	{creation_date = "safe"},
-	{author_id = "safe"},
+	{author = val:new().not_empty()},
+	{email = val:new().not_empty().email()},
 	{post_id = "safe"},
 	{approved = "safe"}
 
@@ -19,7 +20,6 @@ comment.db = {
 
 comment.relations = {
 	post = {relation = "BELONGS_TO", model = "post", attribute = "post_id"},
-	author = {relation = "BELONGS_TO", model = "user", attribute = "author_id"},
 }
 
 return comment

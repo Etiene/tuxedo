@@ -25,7 +25,8 @@ create table comment(
 	body text,
 	creation_date datetime,
 	approved boolean, 
-	author_id int references user (id) ON DELETE SET NULL,
+	author varchar(255),
+	email varchar(255),
 	post_id int references post (id) ON DELETE CASCADE
 );
 
