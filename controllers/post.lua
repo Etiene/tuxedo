@@ -1,5 +1,7 @@
 local M = {}
 
+local tconf = require("conf.conf").tuxedo
+
 local function format_date(date)
 	local _, _, y, m, d, h = string.find(date, "(%d+)-(%d+)-(%d+) (.+):%d+")
 	return d.."/"..m.."/"..y.." "..h
@@ -8,7 +10,7 @@ end
 function M.index(page)
 	local posts = sailor.model("post"):find_all(" published=1 ORDER BY creation_date DESC")
 	local current_page = page.GET.page or 1
-	local posts_per_page = 3
+	local posts_per_page = tconf.posts_per_page
 	local pages = math.ceil(#posts/posts_per_page)
 	local start = (current_page-1)*posts_per_page + 1
 	local stop = current_page*posts_per_page
@@ -64,23 +66,27 @@ function M.view(page)
 		return 404
 	end
 
+	local comment_msg
 	local new_comment = sailor.model("comment"):new()
 	if(next(page.POST)) then
 		new_comment:get_post(page.POST)
 		new_comment.creation_date = os.date("%Y-%m-%d %X")
-		new_comment.approved = true
+		new_comment.approved = tconf.auto_approve_comments
 		new_comment.post_id = post.id
 		if new_comment:save() then
 			-- cleaning form
 			new_comment = sailor.model("comment"):new()
+			if not tconf.auto_approve_comments then
+				comment_msg = "Thank you for your comment, it is now pending moderation."
+			end
 		end
 	end
 
+	--converting string
 	post.creation_date = format_date(post.creation_date)
 	post.last_modified = format_date(post.last_modified)
-	
 
-	page:render('view',{post = post,format_date=format_date,new_comment=new_comment})
+	page:render('view',{post = post,format_date=format_date,new_comment=new_comment,comment_msg=comment_msg})
 end
 
 function M.delete(page)

@@ -16,6 +16,7 @@ By <%= post.author.username %> on <%= post.creation_date %>
 
 <h4>Comments</h4>
 <!-- INSERT COMMENT FORM -->
+<?lua if comment_msg then page:print(comment_msg.."<br/>") end ?>
 <form method="post"> 
 	<div class="form-group">
 		<label>Author:</label>

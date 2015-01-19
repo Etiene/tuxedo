@@ -9,11 +9,11 @@ local conf = {
 		route_parameter = 'r',
 		default_error404 = 'error/404',
 		enable_autogen = true, -- default is false, should be true only in development environment
-		friendly_urls = false,
+		friendly_urls = true,
 	},
 	db = {
 		driver = 'mysql',
-		host = '',
+		host = 'localhost',
 		user = '',
 		pass = '',
 		dbname = ''
@@ -26,6 +26,10 @@ local conf = {
 	},
 	debug = {
 		inspect = true
+	},
+	tuxedo = {
+		posts_per_page = 10,
+		auto_approve_comments = false
 	}
 }
 
