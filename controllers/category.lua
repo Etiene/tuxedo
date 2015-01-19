@@ -1,11 +1,19 @@
 local M = {}
 
 function M.index(page)
-	local categorys = sailor.model("category"):find_all()
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
+	local categories = sailor.model("category"):find_all()
 	page:render('index',{categorys = categorys})
 end
 
 function M.create(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local category = sailor.model("category"):new()
 	local saved
 	if next(page.POST) then
@@ -19,6 +27,10 @@ function M.create(page)
 end
 
 function M.update(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local category = sailor.model("category"):find_by_id(page.GET.id)
 	if not category then
 		return 404
@@ -35,6 +47,10 @@ function M.update(page)
 end
 
 function M.view(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local category = sailor.model("category"):find_by_id(page.GET.id)
 	if not category then
 		return 404
@@ -43,6 +59,10 @@ function M.view(page)
 end
 
 function M.delete(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local category = sailor.model("category"):find_by_id(page.GET.id)
 	if not category then
 		return 404

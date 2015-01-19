@@ -6,30 +6,22 @@ local function format_date(date)
 end
 
 function M.index(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
+
 	local comments = sailor.model("comment"):find_all()
 	page:render('index',{comments = comments, format_date = format_date})
 end
 
-function M.create(page)
-	local comment = sailor.model("comment"):new()
-	local saved
-	if next(page.POST) then
-		comment:get_post(page.POST)
-		comment.creation_date = os.date("%Y-%m-%d %X")
-		if comment.approved == 'on' then
-			comment.approved = true
-		else
-			comment.approved = false
-		end
-		saved = comment:save()
-		if saved then
-			page:redirect('comment/index')
-		end
-	end
-	page:render('create',{comment = comment, saved = saved})
-end
 
 function M.update(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
+
 	local comment = sailor.model("comment"):find_by_id(page.GET.id)
 	if not comment then
 		return 404
@@ -51,6 +43,10 @@ function M.update(page)
 end
 
 function M.view(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local comment = sailor.model("comment"):find_by_id(page.GET.id)
 	if not comment then
 		return 404
@@ -60,6 +56,10 @@ function M.view(page)
 end
 
 function M.delete(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local comment = sailor.model("comment"):find_by_id(page.GET.id)
 	if not comment then
 		return 404

@@ -19,6 +19,11 @@ function M.index(page)
 end
 
 function M.create(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
+
 	local post = sailor.model("post"):new()
 	local saved
 	if next(page.POST) then
@@ -39,6 +44,11 @@ function M.create(page)
 end
 
 function M.update(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
+
 	local post = sailor.model("post"):find_by_id(page.GET.id)
 	if not post then
 		return 404
@@ -90,6 +100,11 @@ function M.view(page)
 end
 
 function M.delete(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
+	
 	local post = sailor.model("post"):find_by_id(page.GET.id)
 	if not post then
 		return 404

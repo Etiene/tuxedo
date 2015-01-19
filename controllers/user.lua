@@ -3,11 +3,19 @@ local access = require "sailor.access"
 local md5 = require "md5"
 
 function M.index(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local users = sailor.model("user"):find_all()
 	page:render('index',{users = users})
 end
 
 function M.create(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local user = sailor.model("user"):new()
 	
 	local saved
@@ -29,6 +37,10 @@ function M.create(page)
 end
 
 function M.update(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local user = sailor.model("user"):find_by_id(page.GET.id)
 	if not user then
 		return 404
@@ -55,6 +67,10 @@ function M.update(page)
 end
 
 function M.view(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local user = sailor.model("user"):find_by_id(page.GET.id)
 	if not user then
 		return 404
@@ -63,6 +79,10 @@ function M.view(page)
 end
 
 function M.delete(page)
+	local access = require "sailor.access"
+	if access.is_guest() then
+		return 404
+	end
 	local user = sailor.model("user"):find_by_id(page.GET.id)
 	if not user then
 		return 404
@@ -78,8 +98,6 @@ function M.login(page)
 	if next(page.POST) then
 		user:get_post(page.POST)
 		local login, err = access.login(user.username,user.password)
-		page:inspect(login)
-	--	page:inspect(access.hash(user.username,user.password))
 		if not login then
 			user.errors.password = err
 		end
