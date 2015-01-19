@@ -76,6 +76,8 @@ function M.view(page)
 		return 404
 	end
 
+	page.layout = 'post'
+
 	local comment_msg
 	local new_comment = sailor.model("comment"):new()
 	if(next(page.POST)) then
