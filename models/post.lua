@@ -13,6 +13,7 @@ post.attributes = {
 	{subtitle = "safe"},
 	{body = "safe"},
 	{last_modified = "safe"},
+	{bg_img = "safe"},
 	{published = v:new().boolean()},
 }
 

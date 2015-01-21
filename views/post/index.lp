@@ -3,7 +3,12 @@
     	<?lua
 		for i=start,stop do 
 			if not posts[i] then break end 
-
+			local comments = 0
+			for k, v in pairs(posts[i].comments) do 
+				if v.approved then comments = comments + 1 end
+			end
+			local s
+			if comments == 1 then s = '' else s = 's' end
 			local t = string.gsub(posts[i].title," ","-")?>
 			<div class="post-preview">
             	<a href="<%= sailor.make_url('post/view',{id = posts[i].id, t = t})%>">
@@ -16,7 +21,7 @@
 				</a>
             	<p class="post-meta">
             		Posted by <%= posts[i].author.username %> on <%= format_date(posts[i].creation_date) %><br/>
-        			<a href="<%= sailor.make_url('post/view',{id = posts[i].id})%>"><%= #posts[i].comments %> comments</a>
+        			<a href="<%= sailor.make_url('post/view',{id = posts[i].id})%>"><%= comments %> comment<%=s%></a>
         		</p>
         		<hr/>
             </div>

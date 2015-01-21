@@ -17,6 +17,7 @@ create table post(
 	author_id int references user (id) ON DELETE SET NULL,
 	creation_date datetime,
 	last_modified datetime,
+	bg_img varchar(200),
 	published boolean
 );
 
