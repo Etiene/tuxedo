@@ -21,6 +21,11 @@
 		<span class="help-block"> <?lua page:print( post.errors.subtitle or '') ?> </span>
 	</div>
 	<div class="form-group">
+		<label>background image:</label>
+		<?lua page:print( form.text(post,'bg_img', 'class="form-control" placeholder="bg_img"') ) ?>
+		<span class="help-block"> <?lua page:print( post.errors.bg_img or '') ?> </span>
+	</div>
+	<div class="form-group">
 		<label>post:</label>
 		<?lua page:print( form.textarea(post,'body', 'class="form-control" placeholder="body"') ) ?>
 		<span class="help-block"> <?lua page:print( post.errors.body or '') ?> </span>
