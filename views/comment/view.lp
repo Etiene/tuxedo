@@ -7,7 +7,7 @@
 	<tr><td>id</td><td><?lua page:print( comment.id ) ?> </td></tr> 
 	<tr><td>body</td><td><?lua page:print( comment.body ) ?> </td></tr> 
 	<tr><td>creation date</td><td><?lua page:print( comment.creation_date ) ?> </td></tr> 
-	<tr><td>author id</td><td><?lua page:print( comment.author_id ) ?> </td></tr> 
+	<tr><td>author</td><td><?lua page:print( comment.author ) ?> </td></tr> 
 	<tr><td>post id</td><td><?lua page:print( comment.post_id ) ?> </td></tr> 
 	<tr><td>approved</td><td><?lua if comment.approved then page:print( 'Yes' ) else page:print( 'No' ) end ?> </td></tr> 
 </table> 

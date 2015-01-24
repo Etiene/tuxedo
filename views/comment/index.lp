@@ -18,7 +18,7 @@
 			<td> <?lua page:print( v.id ) ?> </td> 
 			<td> <?lua page:print( v.body ) ?> </td> 
 			<td> <?lua page:print( format_date(v.creation_date) ) ?> </td> 
-			<td> <?lua page:print( v.author_id ) ?> </td> 
+			<td> <?lua page:print( v.author ) ?> </td> 
 			<td> <?lua page:print( v.post_id ) ?> </td> 
 			<td> <?lua if v.approved then page:print( 'Yes' ) else page:print( 'No' ) end ?> </td> 
 		</tr>

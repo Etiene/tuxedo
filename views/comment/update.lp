@@ -9,8 +9,8 @@
 		<?lua page:print( form.textarea(comment,'body', 'class="form-control" placeholder="body"') ) ?>
 	</div>
 	<div class="form-group">
-		<label>author id:</label>
-		<?lua page:print( form.text(comment,'author_id', 'class="form-control" placeholder="author_id"') ) ?>
+		<label>author:</label>
+		<?lua page:print( form.text(comment,'author', 'class="form-control" placeholder="author"') ) ?>
 	</div>
 	<div class="form-group">
 		<label>post id:</label>
